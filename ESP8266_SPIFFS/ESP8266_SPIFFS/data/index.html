@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- 
+  Rui Santos
+  Complete project details at https://RandomNerdTutorials.com  
+-->
+<html>
+<head>
+  <title>techmationMyanmar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>SmartMeter</h1>
+ 
+  <p>
+    <span class="sensor-labels">Voltage</span>
+    <span id="voltage">%VOLTAGE%</span>
+    <sup>V</sup>
+  </p>
+
+  <p>
+    <span class="sensor-labels">Current</span>
+    <span id="current">%CURRENT%</span>
+    <sup>A</sup>
+  </p>
+
+  <p>
+    <span class="sensor-labels">Power</span>
+    <span id="power">%POWER%</span>
+    <sup>KW</sup>
+  </p>
+
+  <p>
+    <span class="sensor-labels">Energy</span>
+    <span id="energy">%Energy%</span>
+    <sup>KWH</sup>
+  </p>
+<hr>
+   <p>ONE POLE CHANNEL<strong> %STATE%</strong></p>
+  <p>
+    <a href="/on"><button class="button">ON</button></a>
+    <a href="/off"><button class="button button2">OFF</button></a>
+  </p>
+
+
+</body>
+<script>
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("voltage").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/voltage", true);
+    xhttp.send();
+  }, 1000 ) ;
+
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("current").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/current", true);
+    xhttp.send();
+  }, 1000 ) ;
+
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("pressure").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/pressure", true);
+    xhttp.send();
+  }, 10000 ) ;
+</script>
+</html>
